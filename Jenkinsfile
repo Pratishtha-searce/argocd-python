@@ -12,14 +12,14 @@ pipeline {
                             //sh "git switch master"
                             sh 'echo ${GIT_USERNAME}'
                             sh 'echo ${GIT_PASSWORD}'
-                            sh "cat ./k8s-manifest/deployment.yaml.sample"
-                            sh 'sed "s/latest/${GIT_COMMIT}/g" ./k8s-manifest/deployment.yaml.sample > ./k8s-manifest/deployment.yaml'
-                            sh 'rm ./k8s-manifest/deployment.yaml.sample'
-                            //sh "sed -i 'gcr.io/searce-playground-v1/cicd-python.*+gcr.io/searce-playground-v1/cicd-python:${GIT_COMMIT}+g' ./k8s-manifest/deployment.yaml"
+                            sh "cat ./k8s-manifest/deployment.yaml"
+                            //sh 'sed "s/latest/${GIT_COMMIT}/g" ./k8s-manifest/deployment.yaml.sample > ./k8s-manifest/deployment.yaml'
+                            //sh 'rm ./k8s-manifest/deployment.yaml.sample'
+                            sh "sed -i 'gcr.io/searce-playground-v1/cicd-python.*+gcr.io/searce-playground-v1/cicd-python:${GIT_COMMIT}+g' ./k8s-manifest/deployment.yaml"
                             sh "cat ./k8s-manifest/deployment.yaml"
                             sh "git add ."
                             sh "git commit -m 'Done by Jenkins Job changemanifest: ${GIT_COMMIT}'"
-                            sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/argocd-python.git HEAD:master"
+                            sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/argocd-python.git HEAD:main"
                         
                     }
                 }
