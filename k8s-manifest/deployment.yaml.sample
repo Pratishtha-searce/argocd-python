@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: python
+  name: python   
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python
+  template:
+    metadata:
+      labels:
+        app: python
+    spec:
+      containers:
+        - name: python
+          image: gcr.io/searce-playground-v1/cicd-python:${GIT_COMMIT}
+          ImagePullPolicy: Always
+          ports:
+            - name: http
+              containerPort: 5000
+
