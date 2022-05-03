@@ -15,10 +15,10 @@ pipeline {
                             sh "cat ./k8s-manifest/deployment.yaml"
                             //sh 'sed "s/latest/${GIT_COMMIT}/g" ./k8s-manifest/deployment.yaml.sample > ./k8s-manifest/deployment.yaml'
                             //sh 'rm ./k8s-manifest/deployment.yaml.sample'
-                            sh "sed -i 's+gcr.io/searce-playground-v1/cicd-python.*+gcr.io/searce-playground-v1/cicd-python:${GIT_COMMIT}+g' ./k8s-manifest/deployment.yaml"
+                            sh "sed -i 's+gcr.io/searce-playground-v1/cicd-python.*+gcr.io/searce-playground-v1/cicd-python:${env.BUILD_NUMBER}+g' ./k8s-manifest/deployment.yaml"
                             sh "cat ./k8s-manifest/deployment.yaml"
                             sh "git add ."
-                            sh "git commit -m 'Done by Jenkins Job changemanifest: ${GIT_COMMIT}'"
+                            sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
                             sh "git push https://${GIT_USERNAME}:${GIT_PASSWORD}@github.com/${GIT_USERNAME}/argocd-python.git HEAD:main"
                         
                     }
