@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: python
-          image: gcr.io/searce-playground-v1/cicd-python:9217d08bcadc2497338d1e19c0d6f8c0f5e2d834
+          image: gcr.io/searce-playground-v1/cicd-python:d650ccd3c29c77b56ec20da863c54c1084714acc
           ImagePullPolicy: Always
           ports:
             - name: http
